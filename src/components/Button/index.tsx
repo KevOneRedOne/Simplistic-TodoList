@@ -9,6 +9,7 @@ interface ButtonProps {
   variant?: 'text-primary' | 'text-secondary' | 'icon';
   type?: 'button' | 'submit' | 'reset';
   deleteButton?: boolean;
+  ariaLabel?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -17,7 +18,9 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   icon,
   variant = 'text-primary',
+  type = 'button',
   deleteButton,
+  ariaLabel,
 }) => {
   let className =
     variant === 'icon'
@@ -31,9 +34,15 @@ export const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <button className={className} onClick={onClick} disabled={disabled}>
+    <button
+      type={type}
+      className={className}
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={ariaLabel || (children ? undefined : 'Button')}
+    >
       {typeof icon === 'string' && (
-        <img className={styles.icon} src={icon} alt="icon" />
+        <img className={styles.icon} src={icon} alt="" aria-hidden="true" />
       )}
       {children && <span className={styles.text}>{children}</span>}
     </button>

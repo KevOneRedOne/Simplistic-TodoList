@@ -4,7 +4,8 @@ import styles from './index.module.css';
 import { TaskItem } from '../TaskItem';
 
 const CompletedTasks: React.FC = () => {
-  const { tasks, toggleTask, removeTask } = useTasksContext();
+  const { tasks, toggleTask, removeTask, updateTaskPriority } =
+    useTasksContext();
 
   const completedTasks = tasks.filter(task => task.completed);
   const [isOpen, setIsOpen] = useState(false);
@@ -13,29 +14,51 @@ const CompletedTasks: React.FC = () => {
     setIsOpen(prev => !prev);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleSection();
+    }
+  };
+
   if (completedTasks.length === 0) {
     return null;
-  } else {
-    return (
-      <div className={styles.completedTasks}>
-        <h3 onClick={toggleSection} style={{ cursor: 'pointer', width: '64%' }}>
-          Completed Tasks {isOpen ? '▼' : '►'}
-        </h3>
-        {isOpen && (
-          <ul className={styles.completedTaskList}>
-            {completedTasks.map(task => (
-              <TaskItem
-                key={task.id}
-                task={task}
-                toggleTask={toggleTask}
-                removeTask={removeTask}
-              />
-            ))}
-          </ul>
-        )}
-      </div>
-    );
   }
+
+  return (
+    <div className={styles.completedTasks}>
+      <button
+        onClick={toggleSection}
+        onKeyDown={handleKeyDown}
+        className={styles.completedHeader}
+        aria-expanded={isOpen}
+        aria-controls="completed-tasks-list"
+        type="button"
+      >
+        <span>Completed Tasks ({completedTasks.length})</span>
+        <span className={styles.toggleIcon} aria-hidden="true">
+          {isOpen ? '▼' : '►'}
+        </span>
+      </button>
+      {isOpen && (
+        <ul
+          id="completed-tasks-list"
+          className={styles.completedTaskList}
+          aria-label="Completed tasks"
+        >
+          {completedTasks.map(task => (
+            <TaskItem
+              key={task.id}
+              task={task}
+              toggleTask={toggleTask}
+              removeTask={removeTask}
+              updateTaskPriority={updateTaskPriority}
+            />
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 export default CompletedTasks;
