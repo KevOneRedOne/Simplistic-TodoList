@@ -6,7 +6,7 @@
   padding: 12px 24px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
   font-weight: 500;
   transition: background-color 0.3s ease;
   gap: 8px;
@@ -31,7 +31,7 @@
   padding: 5px;
   border: none;
   cursor: pointer;
-  font-size: 14px;
+  font-size: clamp(12px, 2vw, 14px);
   font-weight: 500;
   transition: background-color 0.3s ease;
 }
@@ -61,6 +61,10 @@ button:disabled {
   margin: 5px;
   cursor: pointer;
   border: none;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .iconButton svg,
@@ -72,8 +76,39 @@ button:disabled {
 
 .iconButton:hover {
   background-color: #062e3f;
+  transform: scale(1.05);
+}
+
+.iconButton:active {
+  transform: scale(0.95);
 }
 
 .deleteButton:hover {
   background-color: #690000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .textButtonPrimary {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .textButtonSecondary {
+    padding: 4px;
+    font-size: 12px;
+  }
+
+  .iconButton {
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    margin: 3px;
+  }
+
+  .iconButton svg,
+  .iconButton .icon {
+    width: 18px;
+    height: 18px;
+  }
 }

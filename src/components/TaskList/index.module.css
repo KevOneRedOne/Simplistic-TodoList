@@ -1,20 +1,80 @@
 .taskSection {
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .taskHeader {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 5px;
+  justify-content: space-between;
+  padding: 15px clamp(10px, 3vw, 20px);
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .taskHeaderSubTitle {
-  margin-left: 20px;
+  font-size: clamp(16px, 2.5vw, 20px);
+  margin: 0;
+  flex: 1;
+  min-width: 150px;
+  text-align: left;
 }
 
 .taskHeaderActions {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
+}
+
+.taskList {
+  padding: 0 clamp(10px, 3vw, 20px);
+  animation: fadeIn 0.3s ease-in;
+}
+
+.emptyState {
+  padding: 40px 20px;
+  text-align: center;
+  color: #a9a9a9;
+  font-size: clamp(14px, 2vw, 16px);
+  animation: fadeIn 0.5s ease-in;
+}
+
+.emptyState p {
+  margin: 0;
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .taskHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .taskHeaderSubTitle {
+    width: 100%;
+    text-align: center;
+  }
+
+  .taskHeaderActions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .emptyState {
+    padding: 30px 15px;
+  }
 }

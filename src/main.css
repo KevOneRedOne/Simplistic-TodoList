@@ -6,7 +6,14 @@
 
 :root {
   font-family: 'Quicksand', sans-serif;
+  font-size: clamp(14px, 2vw, 16px);
   min-height: 100vh;
   background-image: linear-gradient(100deg, #575656, #062e3f);
   color: #ffffff;
 }
+
+/* Breakpoints:
+   Mobile: < 768px
+   Tablet: 768px - 1024px
+   Desktop: > 1024px
+*/

@@ -7,6 +7,7 @@
   margin: 10px 0;
   padding: 5px 10px;
   border: 1px solid #394046;
+  transition: background-color 0.2s ease;
 }
 
 .selectContainer:hover {
@@ -17,15 +18,16 @@
   margin-right: 2px;
   width: 20px;
   height: 20px;
+  flex-shrink: 0;
 }
 
 .selectSection {
   background-color: transparent;
   font-family: 'Quicksand', sans-serif;
   text-align: center;
-  width: 100%;
+  min-width: 100px;
   border: none;
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
   color: #a9a9a9;
   cursor: pointer;
   appearance: none;
@@ -40,4 +42,22 @@
   background-color: #1a1a1a;
   color: #d3d3d3;
   cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .selectContainer {
+    padding: 4px 8px;
+    margin: 5px 0;
+  }
+
+  .selectIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .selectSection {
+    font-size: 14px;
+    min-width: 90px;
+  }
 }
