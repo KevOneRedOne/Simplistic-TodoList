@@ -1,0 +1,97 @@
+.taskItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #1a1a1a7c;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  gap: 12px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.taskItem:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.taskItem:focus-within {
+  outline: 2px solid #062e3f;
+  outline-offset: 2px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.taskContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.taskName {
+  font-size: 16px;
+  color: #d3d3d3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  flex: 1;
+}
+
+.completedDate {
+  font-size: 12px;
+  color: #a9a9a9;
+  font-style: italic;
+}
+
+.taskActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .taskItem {
+    padding: 10px 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .taskContent {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .taskActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .taskName {
+    font-size: 14px;
+  }
+
+  .completedDate {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+  }
+}
