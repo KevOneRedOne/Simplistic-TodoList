@@ -1,205 +1,254 @@
-# Todo List Application
+# Simplistic-TodoList
 
-This project is a simple Todo List application built using React, TypeScript,
-and Vite. The application allows users to manage their tasks by adding,
-removing, and marking them as completed. The project incorporates advanced React
-concepts, including custom hooks, context API, and local storage for persistent
-data.
+[![CI](https://github.com/KevOneRedOne/Simplistic-TodoList/actions/workflows/ci.yml/badge.svg)](https://github.com/KevOneRedOne/Simplistic-TodoList/actions/workflows/ci.yml)
+[![Deploy](https://github.com/KevOneRedOne/Simplistic-TodoList/actions/workflows/deploy.yml/badge.svg)](https://github.com/KevOneRedOne/Simplistic-TodoList/actions/workflows/deploy.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.3-61dafb.svg)](https://reactjs.org/)
 
-## Getting Started
+A beautiful, simplistic, and efficient todo list application built with modern
+web technologies. Stay organized with priority-based task management, responsive
+design, and persistent storage.
+
+## 🚀 [Live Demo](https://kevoneredone.github.io/Simplistic-todo-list-vite/)
+
+## ✨ Features
+
+### Core Functionality
+
+- ✅ **Add, Remove, and Toggle Tasks** - Manage your tasks effortlessly
+- 🎯 **Priority System** - Organize tasks with three priority levels:
+  - 🔴 **High Priority** - Urgent and important tasks
+  - 🟡 **Medium Priority** - Standard tasks (default)
+  - 🟢 **Low Priority** - Nice-to-have tasks
+- 🔄 **Smart Sorting** - Tasks automatically sorted by priority
+- 🎨 **Visual Priority Badges** - Color-coded badges for quick identification
+- ⚡ **Click-to-Change Priority** - Easily update task priorities
+- 🔍 **Filter Tasks** - View all, completed, or incomplete tasks
+- 💾 **Persistent Storage** - Tasks saved in browser's local storage
+- 📱 **Fully Responsive** - Optimized for mobile, tablet, and desktop
+- ♿ **Accessible** - WCAG AA compliant with keyboard navigation
+
+### User Experience
+
+- 🎭 **Collapsible Completed Tasks** - Keep your workspace clean
+- 📅 **Completion Timestamps** - Track when tasks were completed
+- 🧹 **Clear All Tasks** - Quick cleanup option
+- 🎯 **Task Counter** - See your progress at a glance
+- 🌊 **Smooth Animations** - Polished user interactions
+
+## 🛠️ Tech Stack
+
+- **[React 18.3](https://reactjs.org/)** - Modern UI library with hooks
+- **[TypeScript 5.6](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[Vite 5.4](https://vitejs.dev/)** - Lightning-fast build tool
+- **[CSS Modules](https://github.com/css-modules/css-modules)** - Scoped styling
+- **Context API** - Efficient state management
+- **Local Storage API** - Client-side persistence
+- **GitHub Actions** - CI/CD automation
+
+## 📦 Getting Started
 
 ### Prerequisites
 
-Ensure you have the following installed:
-
-- [Node.js](https://nodejs.org/)
-- [npm](https://www.npmjs.com/)
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [npm](https://www.npmjs.com/) (v9 or higher)
 
 ### Installation
 
-1. **Clone the repository:**
+1. **Clone the repository**
 
-   ```bash
-   git clone https://github.com/KevOneRedOne/Simplistic-todo-list-vite
-   cd Simplistic-todo-list-vite
-   ```
+```bash
+git clone https://github.com/KevOneRedOne/Simplistic-TodoList.git
+cd Simplistic-todo-list-vite
+```
 
-2. **Install dependencies:**
+2. **Install dependencies**
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-3. **Run the application:**
+3. **Start development server**
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
-   Open your browser and navigate to `http://localhost:5173`.
+4. **Open your browser**
 
-## Commands
+Navigate to `http://localhost:5173`
 
-- **`npm run dev`**: Start the development server.
-- **`npm run build`**: Build the application for production.
-- **`npm run predeploy`**: Build the application for production.
-- **`npm run deploy`**: Deploy the application to GitHub Pages.
-- **`npm run preview`**: Preview the production build locally.
-- **`npm run prepare`**: Install husky hooks.
-- **`npm run lint`**: Lint the project using ESLint.
-- **`npm run lint:fix`**: Lint the project using ESLint and fix issues.
-- **`npm run type:check`**: Type-check the project using TypeScript.
-- **`npm run type:check:watch`**: Type-check the project using TypeScript in
-  watch mode.
-- **`npm run prettier`**: Format the project using Prettier.
-- **`npm run prettier:fix`**: Format the project using Prettier and fix issues.
+## 📜 Available Scripts
 
-## Project Structure
+| Command                | Description                              |
+| ---------------------- | ---------------------------------------- |
+| `npm run dev`          | Start development server with hot reload |
+| `npm run build`        | Build optimized production bundle        |
+| `npm run preview`      | Preview production build locally         |
+| `npm run deploy`       | Deploy to GitHub Pages                   |
+| `npm run lint`         | Run ESLint to check code quality         |
+| `npm run lint:fix`     | Auto-fix ESLint issues                   |
+| `npm run prettier`     | Check code formatting                    |
+| `npm run prettier:fix` | Auto-format code with Prettier           |
+| `npm run type:check`   | Run TypeScript type checking             |
+| `npm run type:watch`   | Watch mode for type checking             |
+
+## 🏗️ Project Structure
 
 ```
-Simplistic-todo-list-vite/
-├── public/
-├── nginx/
+Simplistic-TodoList/
+├── .github/
+│   └── workflows/          # GitHub Actions CI/CD
+│       ├── ci.yml          # Continuous Integration
+│       └── deploy.yml      # Deployment workflow
+├── public/                 # Static assets
+│   ├── icon.png
+│   └── vite.svg
 ├── src/
-    ├── assets/           # Images and other assets
-│   ├── components/       # React components
-│   ├── context/          # Context API setup
-│   ├── hooks/            # Custom hooks
-│   ├── types/            # TypeScript types
-│   ├── TodoList.tsx           # Main application component
-│   ├── main.tsx          # Entry point
-│   └── ...
-├── .eslintrc.cjs          # ESLint configuration
-├── .prettier.cjs          # Prettier configuration
-├── tsconfig.json         # TypeScript configuration
-├── vite.config.ts        # Vite configuration
-└── package.json          # Project metadata and scripts
+│   ├── assets/             # Images and icons
+│   │   └── icon/
+│   ├── components/         # React components
+│   │   ├── Button/
+│   │   ├── CompletedTasks/
+│   │   ├── CurrentDate/
+│   │   ├── PriorityBadge/  # NEW: Priority badge component
+│   │   ├── TaskFilter/
+│   │   ├── TaskForm/
+│   │   ├── TaskItem/
+│   │   ├── TaskList/
+│   │   ├── TextInput/
+│   │   └── Title/
+│   ├── context/            # React Context API
+│   │   └── tasksContext.tsx
+│   ├── hooks/              # Custom React hooks
+│   │   └── useTasks.tsx
+│   ├── types/              # TypeScript definitions
+│   │   └── index.ts
+│   ├── main.tsx            # Application entry point
+│   ├── TodoList.tsx        # Main app component
+│   └── *.css               # Styling files
+├── CHANGELOG.md            # Version history
+├── CODE_OF_CONDUCT.md      # Community guidelines
+├── CONTRIBUTING.md         # Contribution guide
+├── LICENSE                 # MIT License
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
 ```
 
-## Features
+## 🎯 How to Use
 
-- **Add Tasks**: Users can input tasks and add them to their list.
-- **Remove Tasks**: Users can delete tasks from the list.
-- **Toggle Completion**: Users can mark tasks as completed or uncompleted.
-- **Filter Tasks**: Users can filter tasks based on their completion status.
-- **Persistent Storage**: Tasks are saved in the local storage of the browser,
-  ensuring they persist across page reloads.
+### Adding a Task
 
-## Advanced Techniques
+1. Type your task in the input field
+2. Select a priority level (High, Medium, or Low)
+3. Click "Do it." or press Enter
 
-### Custom Hooks
+### Managing Tasks
 
-- **`useTasks`**: Manages task states, including adding, removing, and toggling
-  tasks.
+- **Complete a task**: Click the ✓ button
+- **Uncomplete a task**: Click the ✗ button on completed tasks
+- **Change priority**: Click on the priority badge
+- **Delete a task**: Click the trash icon
+- **Filter tasks**: Use the dropdown to filter by status
+- **Clear all**: Click the clear icon to remove all tasks
+
+### Priority Levels
+
+- 🔴 **High**: For urgent and important tasks
+- 🟡 **Medium**: For regular tasks (default)
+- 🟢 **Low**: For nice-to-have tasks
+
+Tasks are automatically sorted with high priority tasks appearing first.
+
+## 🧪 Advanced Techniques
 
 ### Performance Optimization
 
-- **`useMemo`**: Used to memoize the filtered list of tasks, improving
-  performance by reducing unnecessary recalculations.
-- **`useCallback`**: Functions for managing tasks are memoized to prevent
-  unnecessary re-renders.
+- **`useMemo`** - Memoizes filtered and sorted task lists
+- **`useCallback`** - Prevents unnecessary re-renders of child components
+- **React.memo** - Optimizes TaskList component rendering
 
-### Context API
+### State Management
 
-- **`TasksContext`**: Shares task management functions and the tasks array
-  across components.
+- **Context API** - Centralized task management
+- **Local Storage** - Automatic persistence with error handling
+- **Optimistic Updates** - Instant UI feedback
 
-### Local Storage
+### Code Quality
 
-- Tasks are loaded from and saved to local storage using `useEffect`, providing
-  a persistent user experience.
+- **TypeScript** - Full type safety
+- **ESLint** - Airbnb configuration with TypeScript support
+- **Prettier** - Consistent code formatting
+- **Husky** - Pre-commit hooks for quality checks
 
-## ESLint, Prettier and vsCode settings Configurations
+## 🤝 Contributing
 
-To maintain a clean codebase, the project uses ESLint, Prettier and the VsCode
-settings for linting. You can expand the configuration file to adjust rules:
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md)
+for details.
 
-1. **Configuration in `.eslintrc.cjs`:**
+### Quick Start for Contributors
 
-   ```javascript
-   module.exports = {
-     env: {
-       browser: true,
-       es2021: true,
-       node: true,
-     },
-     extends: [
-       'airbnb',
-       'airbnb-typescript',
-       'airbnb/hooks',
-       'plugin:react/recommended',
-       'plugin:@typescript-eslint/recommended',
-       'plugin:prettier/recommended',
-     ],
-     overrides: [],
-     parser: '@typescript-eslint/parser',
-     parserOptions: {
-       ecmaVersion: 'latest',
-       sourceType: 'module',
-       project: './tsconfig.json',
-       ecmaFeatures: {
-         jsx: true,
-       },
-     },
-     plugins: ['react', '@typescript-eslint', 'prettier'],
-     rules: {
-       'react/react-in-jsx-scope': 'off',
-       'prettier/prettier': [
-         'error',
-         {
-           endOfLine: 'auto',
-         },
-       ],
-       semi: ['error', 'always'],
-     },
-     settings: {
-       react: {
-         version: 'detect',
-       },
-     },
-   };
-   ```
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-2. **Configuration in `.prettier.cjs`:**
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
 
-   ```javascript
-   module.exports = {
-     trailingComma: 'es5',
-     tabWidth: 2,
-     semi: true,
-     singleQuote: true,
-     printWidth: 80,
-     proseWrap: 'always',
-     bracketSpacing: true,
-     arrowParens: 'avoid',
-     endOfLine: 'lf',
-     jsxSingleQuote: false,
-     quoteProps: 'as-needed',
-     htmlWhitespaceSensitivity: 'strict',
-     insertPragma: false,
-     requirePragma: false,
-     vueIndentScriptAndStyle: false,
-     embeddedLanguageFormatting: 'auto',
-   };
-   ```
+## 🗺️ Roadmap
 
-3. **Configuration in vscode settings.json:**
-   ```json
-   {
-     "editor.formatOnSave": false,
-     "editor.tabSize": 4,
-     "files.autoSave": "onFocusChange",
-     "javascript.validate.enable": false,
-     "eslint.enable": true,
-     "eslint.run": "onSave",
-     "prettier.requireConfig": true,
-     "prettier.singleQuote": true,
-     "prettier.trailingComma": "all",
-     "prettier.arrowParens": "avoid",
-     "prettier.printWidth": 80,
-     "eslint.validate": ["javascript", "typescript", "typescriptreact"],
-     "eslint.options": {
-       "configFile": ".eslintrc.cjs"
-     }
-   }
-   ```
+Future enhancements planned:
+
+- [ ] Dark/Light mode toggle
+- [ ] Task categories and tags
+- [ ] Due dates and reminders
+- [ ] Drag-and-drop reordering
+- [ ] Search functionality
+- [ ] Export/Import tasks (JSON, CSV)
+- [ ] Subtasks support
+- [ ] Multi-language support (i18n)
+- [ ] Progressive Web App (PWA)
+
+## 📝 Configuration
+
+### ESLint
+
+The project uses ESLint with Airbnb configuration. See
+[eslint.config.js](eslint.config.js).
+
+### Prettier
+
+Code formatting is handled by Prettier. Configuration in `package.json`.
+
+### TypeScript
+
+TypeScript configuration in [tsconfig.json](tsconfig.json) with strict mode
+enabled.
+
+## 🚀 Deployment
+
+### GitHub Pages (Automatic)
+
+Push to `main` branch triggers automatic deployment via GitHub Actions.
+
+### Manual Deployment
+
+```bash
+npm run build
+npm run deploy
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
+for details.
+
+---
+
+**Made with ❤️ by KevOneRedOne**
+
+_Stay organized, stay productive!_
