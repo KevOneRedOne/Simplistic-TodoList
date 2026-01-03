@@ -14,8 +14,5 @@
   "eslint.options": {
     "configFile": ".eslintrc.cjs"
   },
-  "conventionalCommits.scopes": [
-    "test",
-    "settings"
-  ]
+  "conventionalCommits.scopes": ["test", "settings"]
 }
