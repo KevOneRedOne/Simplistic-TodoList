@@ -1,0 +1,82 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: default;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.badge.editable {
+  cursor: pointer;
+}
+
+.badge.editable:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.badge.editable:active {
+  transform: scale(0.95);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.label {
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Priority styles */
+.high {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.high .dot {
+  background-color: #ef4444;
+}
+
+.medium {
+  background-color: rgba(251, 146, 60, 0.2);
+  color: #fb923c;
+  border: 1px solid rgba(251, 146, 60, 0.3);
+}
+
+.medium .dot {
+  background-color: #fb923c;
+}
+
+.low {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.low .dot {
+  background-color: #22c55e;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .badge {
+    font-size: 11px;
+    padding: 3px 8px;
+    gap: 4px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+}
