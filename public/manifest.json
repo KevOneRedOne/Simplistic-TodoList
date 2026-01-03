@@ -1,0 +1,20 @@
+{
+  "name": "Simplistic TodoList",
+  "short_name": "TodoList",
+  "description": "A beautiful, simplistic todo list app with priority-based task management",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#575656",
+  "theme_color": "#062e3f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "screenshots": []
+}
