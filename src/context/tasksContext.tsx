@@ -1,18 +1,19 @@
 import React, {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
   useState,
-  useCallback,
 } from 'react';
-import { Task } from '../types';
+import { Priority, Task } from '../types';
 
 interface TasksContextType {
   tasks: Task[];
-  addTask: (taskName: string) => void;
+  addTask: (taskName: string, priority?: Priority) => void;
   removeTask: (id: number) => void;
   toggleTask: (id: number) => void;
+  updateTaskPriority: (id: number, priority: Priority) => void;
   clearAllTasks: () => void;
   filterTasks: 'all' | 'completed' | 'incomplete';
   setFilterTasks: (filter: 'all' | 'completed' | 'incomplete') => void;
@@ -44,17 +45,21 @@ export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = useCallback((taskName: string) => {
-    if (taskName.trim()) {
-      const newTask = {
-        id: Date.now(),
-        name: taskName,
-        dateCompleted: '',
-        completed: false,
-      };
-      setTasks(prevTasks => [...prevTasks, newTask]);
-    }
-  }, []);
+  const addTask = useCallback(
+    (taskName: string, priority: Priority = 'medium') => {
+      if (taskName.trim()) {
+        const newTask = {
+          id: Date.now(),
+          name: taskName,
+          dateCompleted: '',
+          completed: false,
+          priority,
+        };
+        setTasks(prevTasks => [...prevTasks, newTask]);
+      }
+    },
+    []
+  );
 
   const removeTask = useCallback((id: number) => {
     setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
@@ -74,19 +79,38 @@ export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
     );
   }, []);
 
+  const updateTaskPriority = useCallback((id: number, priority: Priority) => {
+    setTasks(prevTasks =>
+      prevTasks.map(task => (task.id === id ? { ...task, priority } : task))
+    );
+  }, []);
+
   const clearAllTasks = useCallback(() => {
     setTasks([]);
   }, []);
 
   const filteredTasks = useMemo(() => {
+    let filtered: Task[];
     switch (filterTasks) {
       case 'completed':
-        return tasks.filter(task => task.completed);
+        filtered = tasks.filter(task => task.completed);
+        break;
       case 'incomplete':
-        return tasks.filter(task => !task.completed);
+        filtered = tasks.filter(task => !task.completed);
+        break;
       default:
-        return tasks;
+        filtered = tasks;
     }
+
+    // Sort by priority: high → medium → low
+    const priorityOrder: Record<Priority, number> = {
+      high: 0,
+      medium: 1,
+      low: 2,
+    };
+    return filtered.sort(
+      (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]
+    );
   }, [tasks, filterTasks]);
 
   const isTaskListEmpty = useMemo(() => tasks.length === 0, [tasks]);
@@ -102,6 +126,7 @@ export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
         addTask,
         removeTask,
         toggleTask,
+        updateTaskPriority,
         clearAllTasks,
         filterTasks,
         setFilterTasks,
@@ -114,6 +139,7 @@ export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTasksContext = () => {
   const context = useContext(TasksContext);
   if (!context) {

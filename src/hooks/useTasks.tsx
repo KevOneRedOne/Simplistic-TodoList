@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
-import { Task } from '../types';
+import { Task, Priority } from '../types';
 
 export const useTasks = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -10,7 +10,12 @@ export const useTasks = () => {
   useEffect(() => {
     try {
       const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-      setTasks(storedTasks);
+      // Migration: add default priority to old tasks
+      const migratedTasks = storedTasks.map((task: Task) => ({
+        ...task,
+        priority: task.priority || 'medium',
+      }));
+      setTasks(migratedTasks);
     } catch (error) {
       console.error('Failed to load tasks:', error);
       setTasks([]);
@@ -21,17 +26,21 @@ export const useTasks = () => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = useCallback((taskName: string) => {
-    if (taskName.trim()) {
-      const newTask = {
-        id: Date.now(),
-        name: taskName,
-        dateCompleted: '',
-        completed: false,
-      };
-      setTasks(prevTasks => [...prevTasks, newTask]);
-    }
-  }, []);
+  const addTask = useCallback(
+    (taskName: string, priority: Priority = 'medium') => {
+      if (taskName.trim()) {
+        const newTask: Task = {
+          id: Date.now(),
+          name: taskName,
+          dateCompleted: '',
+          completed: false,
+          priority,
+        };
+        setTasks(prevTasks => [...prevTasks, newTask]);
+      }
+    },
+    []
+  );
 
   const removeTask = useCallback((id: number) => {
     setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
@@ -51,19 +60,38 @@ export const useTasks = () => {
     );
   }, []);
 
+  const updateTaskPriority = useCallback((id: number, priority: Priority) => {
+    setTasks(prevTasks =>
+      prevTasks.map(task => (task.id === id ? { ...task, priority } : task))
+    );
+  }, []);
+
   const clearAllTasks = useCallback(() => {
     setTasks([]);
   }, []);
 
   const filteredTasks = useMemo(() => {
+    let filtered: Task[];
     switch (filterTasks) {
       case 'completed':
-        return tasks.filter(task => task.completed);
+        filtered = tasks.filter(task => task.completed);
+        break;
       case 'incomplete':
-        return tasks.filter(task => !task.completed);
+        filtered = tasks.filter(task => !task.completed);
+        break;
       default:
-        return tasks;
+        filtered = tasks;
     }
+
+    // Sort by priority: high → medium → low
+    const priorityOrder: Record<Priority, number> = {
+      high: 0,
+      medium: 1,
+      low: 2,
+    };
+    return filtered.sort(
+      (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]
+    );
   }, [tasks, filterTasks]);
 
   const isTaskListEmpty = useMemo(() => {
@@ -87,6 +115,7 @@ export const useTasks = () => {
     addTask,
     removeTask,
     toggleTask,
+    updateTaskPriority,
     clearAllTasks,
     setFilterTasks: setFilter,
     hasPendingTasks,
