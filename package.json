@@ -1,20 +1,20 @@
 {
-  "name": "simplistic-todo-list-vite",
-  "description": "A simplistic todo list app built with Vite and React",
+  "name": "simplistic-todolist",
+  "description": "A beautiful, simplistic todo list app with priority-based task management",
   "private": true,
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
-  "homepage": "https://github.com/KevOneRedOne/Simplistic-todo-list-vite",
+  "homepage": "https://github.com/KevOneRedOne/Simplistic-TodoList",
   "repository": {
     "type": "git",
-    "url": "https://github.com/KevOneRedOne/Simplistic-todo-list-vite.git"
+    "url": "https://github.com/KevOneRedOne/Simplistic-TodoList.git"
   },
   "license": "MIT",
   "author": "KevOneRedOne",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "deploy": "gh-pages -d dist --repo https://github.com/KevOneRedOne/Simplistic-todo-list-vite.git",
+    "build": "vite build",
+    "deploy": "gh-pages -d dist --repo https://github.com/KevOneRedOne/Simplistic-TodoList.git",
     "preview": "vite preview",
     "prepare": "husky install",
     "prettier": "prettier --check .",
@@ -22,8 +22,8 @@
     "lint:fix": "eslint --fix",
     "lint": "eslint .",
     "dev:cache": "vite --force",
-    "type:check": "tsc --noEmit",
-    "type:watch": "tsc --noEmit --watch"
+    "type:check": "npx tsc --project tsconfig.app.json --noEmit",
+    "type:watch": "npx tsc --project tsconfig.app.json --noEmit --watch"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -37,10 +37,7 @@
     "@typescript-eslint/parser": "^8.8.1",
     "@vitejs/plugin-react": "^4.3.2",
     "eslint": "^9.12.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.1",
